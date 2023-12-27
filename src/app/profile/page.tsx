@@ -8,6 +8,7 @@ import { IoPersonSharp } from "react-icons/io5";
 import { FaListUl } from "react-icons/fa";
 import { MdWork } from "react-icons/md";
 import { IoChatbubblesSharp } from "react-icons/io5";
+import Home from "../components/Home";
 
 const MenuContents = [
   { name: "Home" , icon: <FaHome/>, selected: true},
@@ -19,18 +20,22 @@ const MenuContents = [
 
 const Page = () => {
   const [selected, setSelected] = useState<string>('Home');
+
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
+  const colorStyle = theme === 'light' ? 'bg-white text-black' : 'bg-gray-800 text-white';
   return (
     <>
       <Box>
         < Grid container spacing={2} >
           <Grid item xs={3}>
-            <div className="h-screen flex flex-col align-center justify-between">
+            <div className={`h-screen flex flex-col align-center justify-between ${colorStyle}`}>
               <div className="relative mx-auto mt-16">
                 <div className="absolute top-0 right-0 w-4 h-4 border-l-0 border-b-0 border-t-[6px] border-r-[6px] border-red-500 border-solid"></div>
-                <h1 className="text-center px-5 py-2 text-3xl">Pranay</h1>
+                <h1 className={`text-center px-5 py-2 text-3xl ${colorStyle}`}> <span className="font-carattere text-5xl">P</span>ranay</h1>
                 <div className="absolute bottom-0 left-0 w-4 h-4 border-l-[6px] border-b-[6px] border-t-0 border-r-0 border-red-500 border-solid"></div>
               </div>
-              <ul className="m-auto flex flex-col gap-7">
+              <ul className={`m-auto flex flex-col gap-7 ${colorStyle}`}>
               {MenuContents.map((item, index) => (
                 <MenuItem key={index} name={item.name} icon={item.icon} selected={selected===item.name} onClick={()=>setSelected(item.name) }/>
               )
@@ -40,7 +45,7 @@ const Page = () => {
             </div>
           </Grid>
           <Grid item xs={9} className="bg-sky-50">
-                
+              {/* <Home/> */}
           </Grid>
         </Grid >
       </Box>

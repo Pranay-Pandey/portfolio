@@ -5,6 +5,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Sevillana");
+@import url('https://fonts.googleapis.com/css2?family=Carattere&display=swap');
 
 :root {
   --foreground-rgb: 0, 0, 0;
