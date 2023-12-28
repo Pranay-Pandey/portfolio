@@ -22,7 +22,7 @@ export default function Home(props: { colortheme: string }) {
     return () => clearInterval(interval);
   }, []);
 
-  const typeText = (text, index, callback) => {
+  const typeText = (text:string, index:number, callback: any) => {
     if (index < text.length) {
       setTypedText((prev) => prev + text.charAt(index));
       setTimeout(() => typeText(text, index + 1, callback), 50);

@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "path/to/your/source",
+        "use": "@vercel/node",
+        "config": {
+          "NODE_VERSION": "14"
+        }
+      }
+    ],
+    "env": {
+      "NEXT_PUBLIC_REACT_TYPING_ANIMATION_LEGACY_PEER_DEPS": "true"
+    }
+  }
+  
