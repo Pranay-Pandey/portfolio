@@ -4,18 +4,18 @@ import MenuItem from "../components/menu-item";
 import { Switch } from "@mui/material";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import { FaHome } from "react-icons/fa";
+import { FaHome , FaMoon, FaSun} from "react-icons/fa";
 import { IoPersonSharp } from "react-icons/io5";
 import { FaListUl } from "react-icons/fa";
 import { MdWork } from "react-icons/md";
 import { IoChatbubblesSharp } from "react-icons/io5";
+import { CgColorPicker } from "react-icons/cg";
 import Home from "../components/Home";
 import {
   getThemedataClass,
   ColorPicker,
   getColordataClass,
 } from "../components/colors";
-import { FaSun } from "react-icons/fa";
 
 const MenuContents = [
   { name: "Home", icon: <FaHome />, selected: true },
@@ -25,10 +25,11 @@ const MenuContents = [
   { name: "Contact", icon: <IoChatbubblesSharp />, selected: false },
 ];
 
+
 const Page = () => {
   const [selected, setSelected] = useState<string>("Home");
   const [theme, setTheme] = useState<"light" | "dark">("light");
-  const [themedata, setThemedata] = useState<string>(getThemedataClass(theme));
+  const [themedata, setThemedata] = useState<Record<string, string>>(getThemedataClass(theme));
   const [colorPickerOpen, setColorPickerOpen] = useState<boolean>(false);
   const [selectedColor, setSelectedColor] = useState<string>("text-red-500 border-red-500");
 
@@ -50,13 +51,21 @@ const Page = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
+  const ContentMap = {
+    Home: <Home colortheme={selectedColor}/>,
+    About: <div>About</div>,
+    Services: <div>Services</div>,
+    Experience: <div>Experience</div>,
+    Contact: <div>Contact</div>,
+  };
+
   return (
     <>
       <Box>
         <Grid container spacing={2}>
           <Grid item xs={3}>
             <div
-              className={`h-screen flex flex-col align-center justify-between ${themedata}`}
+              className={`h-screen flex flex-col align-center justify-between ${themedata.sidebar}`}
             >
               <div className="relative mx-auto mt-16">
                 <div className={`absolute top-0 right-0 w-4 h-4 border-l-0 border-b-0 border-t-[6px] border-r-[6px] border-solid ${selectedColor}`}></div>
@@ -80,19 +89,28 @@ const Page = () => {
               <p></p>
             </div>
           </Grid>
-          <Grid item xs={9} className="bg-sky-50">
-            {/* A light dark theme picker on the right corner expanded on click to select the theme */}
-            <div className="flex flex-col gap-2 absolute right-5 top-10">
+          <Grid item xs={9} className={themedata.content}>
+            <div className="flex flex-col gap-1 absolute right-5 top-10">
               <div className={` w-10 h-10 rounded-full cursor-pointer`}>
                 <Switch
                   checked={theme === "dark"}
                   onChange={handleThemeChange}
+                  icon={
+                    <div className="flex items-center justify-center bg-slate-400 rounded-full">
+                      {<FaSun size={18} />}
+                    </div>
+                  }
+                  checkedIcon={
+                    <div className="flex items-center justify-center">
+                      {<FaMoon size={18} />}
+                    </div>
+                  }
                 />
               </div>
-              <div className=" w-10 h-10 rounded-full cursor-pointer flex flex-col justify-end items-end">
-                <FaSun
+              <div className=" w-10  rounded-full cursor-pointer flex flex-col justify-end items-end">
+                <CgColorPicker
                   onClick={() => setColorPickerOpen((prev) => !prev)}
-                  size={"2rem"}
+                  size={22}
                 />
               </div>
               {colorPickerOpen && (
@@ -101,6 +119,12 @@ const Page = () => {
                 </div>
               )}
             </div>
+
+
+            <div className="flex flex-col justify-center items-center h-screen">
+              {ContentMap[selected as keyof typeof ContentMap] || <div>404</div>}
+            </div>
+            
           </Grid>
         </Grid>
       </Box>
@@ -109,3 +133,5 @@ const Page = () => {
 };
 
 export default Page;
+
+

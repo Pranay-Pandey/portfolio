@@ -3,9 +3,15 @@ import {useState} from "react";
 
 const getThemedataClass = (theme: string) => {
     if (theme === 'dark') {
-        return 'bg-gray-800 text-white';
+        return {
+            sidebar: 'bg-gray-700 text-white',
+            content: 'bg-gray-800 text-white'
+        }
     }
-    return 'bg-white text-black';
+    return {
+        sidebar:'bg-white text-black',
+        content: 'bg-sky-50'
+    };
 };
 
 const Colors = [
