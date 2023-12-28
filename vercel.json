@@ -9,6 +9,9 @@
         }
       }
     ],
+    "scripts": {
+      "install": "npm install --legacy-peer-deps"
+    },
     "env": {
       "NEXT_PUBLIC_REACT_TYPING_ANIMATION_LEGACY_PEER_DEPS": "true"
     }
