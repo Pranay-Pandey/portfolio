@@ -1,19 +1,4 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "src/app",
-        "use": "@vercel/node",
-        "config": {
-          "NODE_VERSION": "14"
-        }
-      }
-    ],
-    "scripts": {
-      "install": "npm install --legacy-peer-deps"
-    },
-    "env": {
-      "NEXT_PUBLIC_REACT_TYPING_ANIMATION_LEGACY_PEER_DEPS": "true"
-    }
-  }
-  
+  "version": 2,
+  "builds": [{ "src": "build-output-directory/**", "use": "@vercel/static-build" }]
+}
