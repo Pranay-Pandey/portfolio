@@ -1,4 +1,0 @@
-{
-  "version": 2,
-  "builds": [{ "src": "build-output-directory/**", "use": "@vercel/static-build" }]
-}
